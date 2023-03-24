@@ -1,0 +1,23 @@
+
+
+structs:
+account {
+  name
+  email
+  id
+}
+
+
+stored data:
+table {account-id => pwd-hash}
+table {account-id => name, email}
+
+
+
+
+
+
+
+password verif:
+        (client) | (server)
+pwd => hash => send => salt => hash => check
