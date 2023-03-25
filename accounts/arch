@@ -9,15 +9,21 @@ account {
 
 
 stored data:
-table {account-id => pwd-hash}
+table {account-id => user-salt, password-hash}
 table {account-id => name, email}
 
 
+functions:
+get-account-id(name-or-email)
+auth-user(account-id, password-hash)
+register-user(name, email, pre-salt-password-hash)
 
 
 
+
+Login page allows user to save password hash to a cookie; this cookie is used on each request to allow the server to authenticate the user.
 
 
 password verif:
         (client) | (server)
-pwd => hash => send => salt => hash => check
+pwd => hash => send => per-user-salt => main-salt => hash => check
