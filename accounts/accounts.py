@@ -20,14 +20,15 @@ def register(name, email, unsalted_hash):
   id = secrets.randbits(64)
   final_hash = encrypt(unsalted_hash)
 
+def get_global_salt():
+  """ standin """
+  return '17de4'
 
+
+# Functions
 
 def encrypt(unsalted_hash, salt):
   """ salt and hash a received password hash """
   final_hash = hashlib.sha512()
   global_salt = get_global_salt()
   return final_hash.update(unsalted_hash+salt+global_salt).hexdigest()
-
-def get_global_salt():
-  """ standin """
-  return '17de4'
