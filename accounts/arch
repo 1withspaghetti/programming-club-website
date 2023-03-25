@@ -18,6 +18,8 @@ get-account-id(name-or-email)
 auth-user(account-id, password-hash)
 register-user(name, email, pre-salt-password-hash)
 
+salt-and-hash(unsalted-hash, salt)
+get-global-salt()
 
 
 
