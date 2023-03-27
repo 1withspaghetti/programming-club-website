@@ -17,6 +17,10 @@ procedures:
 get-account-id(name-or-email)
 auth-user(account-id, password-hash)
 register-user(name, email, pre-salt-password-hash)
+update-user-email(account-id, new-email)
+update-user-name(account-id, new-name)
+update-user-password(account-id, new-password-pre-salt-hash)
+delete-user(account-id)
 
 get-global-salt()
 
