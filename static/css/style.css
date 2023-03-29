@@ -1,7 +1,10 @@
+:root {
+    font-family: poppins, sans-serif;
+}
+
 html, body {
     display: block;
     margin: 0px;
-    font-family: poppins, sans-serif;
 }
 
 *, ::after, ::before {
