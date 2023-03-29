@@ -1,0 +1,69 @@
+
+
+routes:
+/login
+/refresh
+/logout
+/register
+
+
+
+JWTs (JSON Web Tokens):
+refresh (only used by client and auth server; long lifetime; terminated by logout; used to get a new resource token)
+{
+- expiration date
+- user id
+- token (to id this JWT)
+}
+resource (short lifetime; used with resource server to authenticate)
+{
+- expiration time
+- user id
+- username
+- email
+}
+
+
+
+login:
+server
+----------------------------------------
+^                                  v
+|(username OR email),password      |
+|                       refresh JWT|
+^                                  v
+----------------------------------------
+client
+
+
+refresh:
+server
+-----------------------
+^                  v
+|refresh JWT       |
+|      resource JWT|
+^                  v
+-----------------------
+client
+
+
+logout:
+server
+----------------------
+^                 v
+|refresh JWT      |
+|            empty|
+^                 v
+----------------------
+client
+
+
+register:
+server
+----------------------------------
+^                             v
+|username,email,password      |
+|                        empty|
+^                             v
+----------------------------------
+client
