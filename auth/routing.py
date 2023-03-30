@@ -1,29 +1,54 @@
 from flask import Flask
 from flask import request
-from flask import url_for
-from os import listdir
-from os.path import isfile, join
+from flask import render_template
+from app import app
+from actions import actions
 
-app = Flask(__name__)
+class routing():
 
-@app.route('/website/<long:post_id>')
-def show_post(post_id) -> str:
-    return f'Post {post_id}'
+    @app.route("/test")
+    def test_print():
+        return f'LHS Programming club website!'
 
-@app.route("/login", methods = ['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        return make_post()
-    else:
-        return make_get()
+    @app.route("/login", methods = ['HEAD', 'POST'])
+    def login():
+        if request.method == 'POST':
+            if actions.valid_login(request.form['username'], request.form['password']):
+                actions.login_user(request.form['username'])
+            else:
+                error = 'invalid credentials'
+                render_template('invalid_credentials.html')
+        render_template('login.html', error)
+        
 
-def make_post():
-    'post request'
+    @app.route("/refresh", methods = ['HEAD'])
+    def refresh():
+        pass
 
-def make_get():
-    'shows login screen'
+    @app.route("/logout", methods = ['PATCH'])
+    def logout():
+        pass
 
-'this could be potentially put somewhere else'
-def get_and_index_static_file_urls() -> list:
-    files = [file for file in listdir('static') if isfile(join(url_for('static', file)))]
-    return files
+    @app.route("/register", methods = ['POST'])
+    def register():
+        pass
+
+    @app.route("/update/username", methods = ['PATCH'])
+    def update_username():
+        pass
+
+    @app.route("/update/email", methods = ['PATCH'])
+    def update_email():
+        pass
+
+    @app.route("/update/password", methods = ['PATCH'])
+    def update_password():
+        pass
+
+    @app.route("/delete", methods = ['DELETE'])
+    def delete():
+        pass
+
+
+    def get_id(reference):
+        """ returns user id matching reference """
