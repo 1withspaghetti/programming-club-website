@@ -5,9 +5,7 @@ from flask import request
 
 app = Flask(__name__)
 
-@app.route('/website/<long:post_id>')
-def show_post(post_id) -> str:
-    return f'Post {post_id}'
+
 
 @app.route("/login", methods = ['HEAD'])
 def login():
@@ -34,7 +32,7 @@ def update_email():
   pass
 
 @app.route("/update/password", methods = ['PATCH'])
-def update_email():
+def update_password():
   pass
 
 @app.route("/delete", methods = ['DELETE'])
