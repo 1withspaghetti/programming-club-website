@@ -1,6 +1,9 @@
 for a quick overview of the protocol, see the arch; this file is for a more in-depth spec;
 
 (METHOD [header: value, header: value] {body}) represents an http request
+(REQ/RES){[context]} specifies the context in which an HTTP message would be sent (if unspecified assume a context of success)
+single quotes are used to say in plain english what goes in a field, double quotes are string literals 
+
 
 routes:
   /login
@@ -15,4 +18,21 @@ routes:
 
 
 /login:
-client => server (HEAD )
+client => server (HEAD [Ref:'username or email',Password:'account password'])
+server => client (200 [Bearer: 'refresh JWT']) OR (404){[incorrect email/username]} OR (400){[incorrect password]}
+
+/refresh:
+client => server (HEAD [Bearer: 'refresh JWT'])
+server => client (200 [Bearer: 'resource JWT']) OR (401){[invalid, expired or terminated refresh JWT provided]}
+
+/logout:
+client => server (PATCH [Bearer: 'refresh JWT'])
+server => client (200) OR (400){[invalid JWT]}
+
+/register:
+client => server (POST [Content-type: "application/json"] {username: 'username', email: 'email', password: 'password'})
+server => client (201) OR (400){[weird body]} OR (409){[user already exists]}
+
+/update/username:
+client => server (PATCH [Bearer:'resource JWT'] {username: 'username'})
+server => client (200) OR (401){[]}
