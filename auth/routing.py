@@ -23,6 +23,7 @@ def make_post():
 def make_get():
     'shows login screen'
 
+'this could be potentially put somewhere else'
 def get_and_index_static_file_urls() -> list:
     files = [file for file in listdir('static') if isfile(join(url_for('static', file)))]
     return files
