@@ -1,8 +1,7 @@
 from flask import Flask
 from flask import request
-from flask import url_for
-from os import listdir
-from os.path import isfile, join
+
+
 
 app = Flask(__name__)
 
@@ -10,19 +9,38 @@ app = Flask(__name__)
 def show_post(post_id) -> str:
     return f'Post {post_id}'
 
-@app.route("/login", methods = ['GET', 'POST'])
+@app.route("/login", methods = ['HEAD'])
 def login():
-    if request.method == 'POST':
-        return make_post()
-    else:
-        return make_get()
+  pass
 
-def make_post():
-    'post request'
+@app.route("/refresh", methods = ['HEAD'])
+def refresh():
+  pass
 
-def make_get():
-    'shows login screen'
+@app.route("/logout", methods = ['PATCH'])
+def logout():
+  pass
 
-def get_and_index_static_file_urls() -> list:
-    files = [file for file in listdir('static') if isfile(join(url_for('static', file)))]
-    return files
+@app.route("/register", methods = ['POST'])
+def register():
+  pass
+
+@app.route("/update/username", methods = ['PATCH'])
+def update_username():
+  pass
+
+@app.route("/update/email", methods = ['PATCH'])
+def update_email():
+  pass
+
+@app.route("/update/password", methods = ['PATCH'])
+def update_email():
+  pass
+
+@app.route("/delete", methods = ['DELETE'])
+def delete():
+  pass
+
+
+def get_id(reference):
+  """ returns user id matching reference """

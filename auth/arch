@@ -1,10 +1,14 @@
-
+for an in-depth spec of the protocol, see the protocol file; this file has a general overview of the protocol for quick reference;
 
 routes:
 /login
 /refresh
 /logout
 /register
+/update/username
+/update/email
+/update/password
+/delete
 
 
 
@@ -67,3 +71,41 @@ server
 ^                             v
 ----------------------------------
 client
+
+
+update:
+server
+------------------------------------------------------
+^                                                 v
+|resource JWT, new (email/username/password)      |
+|                                            empty|
+^                                                 v
+------------------------------------------------------
+client
+
+
+delete:
+server
+----------------------
+^                 v
+|refresh JWT      |
+|            empty|
+^                 v
+----------------------
+client
+
+
+
+Stored data:
+  {id => username,email,password-hash}
+  [valid refresh JWT tokens]
+
+Protocols:
+  login
+  refresh-resource-JWT
+  logout
+  register
+  update-username
+  update-email
+  update-password
+  delete-account

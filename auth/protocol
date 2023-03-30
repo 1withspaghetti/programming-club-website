@@ -1,0 +1,18 @@
+for a quick overview of the protocol, see the arch; this file is for a more in-depth spec;
+
+(METHOD [header: value, header: value] {body}) represents an http request
+
+routes:
+  /login
+  /refresh
+  /logout
+  /register
+  /update/username
+  /update/email
+  /update/password
+  /delete
+
+
+
+/login:
+client => server (HEAD )
