@@ -18,6 +18,10 @@ html, body {
     box-sizing: border-box;
 }
 
+span {
+  display: inline;
+}
+
 .navbar {
     position: sticky;
     top: 0;
@@ -42,16 +46,6 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-form {
-    display:flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 40vw;
-
-    margin: 5px;
-    top: 20px;
 }
 
 .card {
@@ -83,11 +77,14 @@ form {
   flex-grow: 0;
 }
 
-input[type=button], input[type=submit] {
-  background-color: var(--accent-secondary-color);
-  color: var(--text-color);
-  border: 2px solid var(--accent-color);
-  margin: 10px;
+form {
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 40vw;
+
+    margin: 5px;
+    top: 20px;
 }
 
 form * {
@@ -96,6 +93,10 @@ form * {
   flex-grow: 1;
 }
 
-span {
-  display: inline;
+input[type=button], input[type=submit] {
+  background-color: var(--accent-secondary-color);
+  color: var(--text-color);
+  border: 2px solid var(--accent-color);
+  margin: 10px;
 }
+
