@@ -1,4 +1,4 @@
 from flask import Flask
 
-#global instance
+#global instance test
 app = Flask(__name__)
