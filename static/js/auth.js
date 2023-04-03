@@ -1,4 +1,4 @@
-const auth_srv_ip = 'http://127.0.0.1';
+const auth_srv_ip = 'http://rats.works:2069';
 
 window.onload = () => {
   axios.defaults.baseURL = auth_srv_ip;
@@ -30,6 +30,9 @@ function login(event) {
       switch (response.status) {
         case 200:
           // login success
+          let bearer = refresh_bearer();
+          document.cookie = "name=Bearer; value="+bearer+"; Secure";
+          document.href = "/account";
         case 404:
           // bad username/email
         case 400:
@@ -40,4 +43,14 @@ function login(event) {
 
 function register(event) {
   alert(event);
+}
+
+function refresh_bearer() {
+  axios.head('/refresh') {
+    switch (response.status) {
+      case 200:
+        // refresh success
+      case 401:
+        // bad refresh JWT
+  }
 }
