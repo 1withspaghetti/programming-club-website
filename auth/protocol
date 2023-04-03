@@ -19,14 +19,14 @@ routes:
 
 /login:
 client => server (HEAD [Ref:'username or email',Password:'account password'])
-server => client (200 [Bearer: 'refresh JWT']) OR (404){[incorrect email/username]} OR (400){[incorrect password]}
+server => client (200 [Set-Cookie: refresh='refresh JWT']) OR (404){[incorrect email/username]} OR (400){[incorrect password]}
 
 /refresh:
-client => server (HEAD [Bearer: 'refresh JWT'])
+client => server (HEAD [Cookie: refresh='refresh JWT'])
 server => client (200 [Bearer: 'resource JWT']) OR (401){[invalid, expired or terminated refresh JWT provided]}
 
 /logout:
-client => server (PATCH [Bearer: 'refresh JWT'])
+client => server (PATCH [Cookie: refresh='refresh JWT'])
 server => client (200) OR (400){[invalid JWT]}
 
 /register:
