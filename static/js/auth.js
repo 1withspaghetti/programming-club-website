@@ -42,6 +42,28 @@ function login(event) {
 }
 
 function register(event) {
+  axios.post('/register') {
+    
+  }
+}
+
+function logout(event) {
+  alert(event);
+}
+
+function update_username(event) {
+  alert(event);
+}
+
+function update_email(event) {
+  alert(event);
+}
+
+function update_password(event) {
+  alert(event);
+}
+
+function delete_account(event) {
   alert(event);
 }
 
