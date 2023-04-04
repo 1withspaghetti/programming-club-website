@@ -1,51 +1,61 @@
-from flask import Flask
-from flask import request
-from flask import render_template
-from app import app
-from actions import actions
+from flask import request, render_template, Blueprint
+from accounts import accounts
 
-@app.route("/test")
+bp = Blueprint('auth', __name__)
+
+@bp.route("/")
 def test_print():
         return f'LHS Programming club website!'
 
-@app.route("/login", methods = ['HEAD', 'POST'])
+@bp.route("/login", methods = ['HEAD', 'POST'])
 def login():
     if request.method == 'POST':
-        if actions.valid_login(request.form['username'], request.form['password']):
-            actions.login_user(request.form['username'])
+        if valid_login(request.form['username'], request.form['password']):
+            ''''send refresh jwt to client'''
         else:
             error = 'invalid credentials'
             render_template('invalid_credentials.html')
     render_template('login.html', error)
-        
 
-@app.route("/refresh", methods = ['HEAD'])
+
+@bp.route("/refresh", methods = ['HEAD'])
 def refresh():
-    pass
+    if request.method == 'HEAD':
+        valid_login()
 
-@app.route("/logout", methods = ['PATCH'])
+@bp.route("/logout", methods = ['PATCH'])
+@accounts.login_dependent
 def logout():
     pass
 
-@app.route("/register", methods = ['POST'])
+@bp.route("/register", methods = ['HEAD'])
 def register():
     pass
 
-@app.route("/update/username", methods = ['PATCH'])
+
+
+@bp.route("/update/username", methods = ['PATCH'])
+@accounts.login_dependent
 def update_username():
     pass
 
-@app.route("/update/email", methods = ['PATCH'])
+@bp.route("/update/email", methods = ['PATCH'])
+@accounts.login_dependent
 def update_email():
     pass
 
-@app.route("/update/password", methods = ['PATCH'])
+@bp.route("/update/password", methods = ['PATCH'])
+@accounts.login_dependent
 def update_password():
     pass
 
-@app.route("/delete", methods = ['DELETE'])
+@bp.route("/delete", methods = ['DELETE'])
+@accounts.login_dependent
 def delete():
     pass
 
-def get_id(reference):
-    """ returns user id matching reference """
+
+def valid_login(username, password):
+        if username != None and password != None:
+            return True
+        return False

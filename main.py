@@ -1,7 +1,11 @@
 from os.path import isfile, join
 from os import listdir
 from flask import Flask, url_for, render_template
-from app import app
+from unittest import TestCase
+from auth import routing
+import sqlalchemy
+from flask_bcrypt import Bcrypt
+from auth.models import User
 
 #generate absolute paths for static pages
 def get_and_index_static_file_urls() -> list:
@@ -22,3 +26,7 @@ def login():
 @app.route("/register")
 def register():
   return render_template("register.html")
+
+app = Flask(__name__)
+db = sqlalchemy(app)
+bcrypt = Bcrypt(app)

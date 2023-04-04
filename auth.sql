@@ -1,0 +1,14 @@
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    email TEXT UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    registration_time DATETIME NOT NULL,
+    admin BOOLEAN NOT NULL NOT DEFAULT
+);
+
+CREATE TABLE blacklist (
+     id INTEGER PRIMARY KEY AUTOINCREMENT,
+     token VARCHAR UNIQUE NOT NULL,
+     blacklist_time DATETIME NOT NULL
+);
+
