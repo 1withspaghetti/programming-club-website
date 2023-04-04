@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 
-  <title>LHS Programming Club</title>
+  <title>Create Account | LHS Programming Club</title>
   <meta name="description" content="The Official Lincoln High School Programming Club Website">
   <meta name="theme-color" content="#ffffff"/>
 
@@ -31,16 +31,30 @@
   <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <div class="navbar">
-        <a class="nav-title nav-item" href="/">Programming Club</a>
-        <a class="nav-item" href="#">Placeholder</a>
-        <a class="nav-item" href="#">Placeholder</a>
-        <a class="nav-item" href="#">Placeholder</a>
-    </div>
-    <div class="main">
-      <h1>
-        Welcome to the Programming Club Website
-      </h1>
-    </div>
+  <div class="navbar">
+    <a class="nav-title nav-item" href="/">Programming Club</a>
+    <a class="nav-item" href="#">Placeholder</a>
+    <a class="nav-item" href="#">Placeholder</a>
+    <a class="nav-item" href="#">Placeholder</a>
+  </div>
+  <div class="main">
+    <form>
+      <h2>Create Account</h2>
+      <div class="card">
+        <label for="username-box">Username</label>
+        <input type="text" id="username-box" name="username-box" required>
+	<label for="email-box">Email</label>
+	<input type="email" id="email-box" name="email-box" required>
+	<label for="password-box">Password</label>
+        <input type="password" id="password-box" name="password-box" required>
+	<label for="confirm-password-box">Confirm Password</label>
+	<input type="password" id="confirm-password-box" name="confirm-password-box" required>
+        <input type="button" id="register-button" name="register-button" value="Create Account">
+      </div>
+      <div class="card">
+        <div class="form-bar"><span>Already have an account?</span> <a href="/login">Sign into your account.</a></div>
+      </div>
+    </form>
+  </div>
 </body>
 </html>

@@ -1,5 +1,10 @@
 import hashlib
+import os
 import secrets
+import rsa
+import functools
+from flask import redirect, url_for
+from auth.models import User, BlacklistToken
 
 class Account:
   def __init__(self, id, name, email):
@@ -11,7 +16,9 @@ class Account:
 # Procedures
 
 def get_id(reference):
-  """ fetches the id of a user by their name or email """
+      """ fetches the id of a user by their name or email """
+  
+
 
 def authenticate(id, salted_hash):
   """ checks if the provided password hash is the correct hash for the user with given id """
@@ -33,6 +40,9 @@ def set_password(id, unsalted_hash):
 def remove_user(id):
   """ removes an account from the database """
 
+def is_refresh_jwt():
+  pass
+
 def get_global_salt():
   """ standin """
   return '17de4'
@@ -40,8 +50,20 @@ def get_global_salt():
 
 # Functions
 
+def get_secret():
+  return os.urandom(24)
+
 def encrypt(unsalted_hash, salt):
   """ salt and hash a received password hash """
   final_hash = hashlib.sha512()
   global_salt = get_global_salt()
-  return final_hash.update(unsalted_hash+salt+global_salt).hexdigest()
+  return final_hash.update(unsalted_hash+salt+global_salt).hex_digest()
+
+
+#login dependent decorators
+def login_dependent(view):
+  @functools.wraps(view)
+  def wrapped_view(**kwargs):
+        if is_refresh_jwt() is None:
+          return redirect(url_for('login'))
+        return view(**kwargs)
