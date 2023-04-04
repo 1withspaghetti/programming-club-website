@@ -1,11 +1,12 @@
 :root {
     font-family: poppins, sans-serif;
-    --primary-color: #2d2c2b;
-    --secondary-color: #201d1b;
-    --accent-color: #3d201b;
-    --accent-secondary-color: #3d0503;
-    --text-color: #ad9c9c;
-    --text-secondary-color: #787767;
+    --primary-color: #3d3c3b;
+    --secondary-color: #302d2b;
+    --accent-color: #5d5553;
+    --accent-secondary-color: #6d3533;
+    --accent-hover-color: #6d4844;
+    --text-color: #bdacac;
+    --text-secondary-color: #888777;
 }
 
 html, body {
@@ -14,12 +15,21 @@ html, body {
     margin: 0px;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  text-align: center;
+  align-self: center;
+}
+
 *, ::after, ::before {
     box-sizing: border-box;
 }
 
-span {
-  display: inline;
+:link {
+  color: #3044CC;
+}
+
+:visited {
+  color: #823cbb;
 }
 
 .navbar {
@@ -28,6 +38,13 @@ span {
     display: flex;
     background-color: var(--secondary-color);
     color: var(--text-color);
+    overflow-x: scroll;
+}
+
+@media only screen and (min-width: 801px) {
+  .navbar {
+    overflow-x: auto;
+  }
 }
 
 .nav-item, .nav-item:visited, .nav-item:active {
@@ -61,9 +78,8 @@ span {
   margin: 5px;
 }
 
-.flex-center {
-  display: flex;
-  justify-content: center;
+.note {
+  font-size: 0.8em;
 }
 
 .form-bar {
@@ -81,10 +97,16 @@ form {
     display:flex;
     justify-content: center;
     flex-direction: column;
-    width: 40vw;
+    width: 100vw;
 
     margin: 5px;
     top: 20px;
+}
+
+@media only screen and (min-width: 4in) {
+  form {
+    width: 4in;
+  }
 }
 
 form * {
@@ -97,6 +119,25 @@ input[type=button], input[type=submit] {
   background-color: var(--accent-secondary-color);
   color: var(--text-color);
   border: 2px solid var(--accent-color);
+  border-radius: 3px;
   margin: 10px;
+  padding: 5px;
+  flex-grow: 1;
+  font-size: 1.2em;
+
+  transition: background-color 0.5s;
 }
 
+input[type=button]:hover, input[type=submit]:hover {
+  background-color: var(--accent-hover-color);
+}
+
+input[type=text], input[type=email], input[type=password] {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  border: 2px solid var(--accent-color);
+  border-radius: 3px;
+  flex-grow: 2;
+
+  padding: 5px;
+}
